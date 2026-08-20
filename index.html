@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bruno Gaming | Official eFootball 2027 Coin Top-Up — Kyaw Waiyan Linn</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js" onerror="console.warn('fb-app')"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js" onerror="console.warn('fb-db')"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+
+<nav class="navbar">
+    <a href="#" class="nav-logo">
+        <img src="logo.png" alt="Bruno Gaming Logo" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'38\' height=\'38\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' r=\'48\' fill=\'%230a0e1a\' stroke=\'%2300ffcc\' stroke-width=\'3\'/><path d=\'M30 25 L40 45 L33 50 L40 58 L35 70 L50 65 L65 70 L60 58 L67 50 L60 45 L70 25 L62 40 L50 32 L38 40 Z\' fill=\'%2300ffcc\'/></svg>';">
+        <span>BRUNO GAMING</span>
+    </a>
+    <div class="nav-links">
+        <a href="#" class="active">Home</a>
+        <a href="https://www.facebook.com/brunogaming25/" target="_blank"><i class="fa-brands fa-facebook"></i> Page</a>
+        <a href="https://t.me/BRUNOGAMINGOFFICIAL" target="_blank"><i class="fa-brands fa-telegram"></i> Telegram</a>
+    </div>
+</nav>
+
+<div class="wrap">
+
+    <div class="hero">
+        <img src="logo.png" alt="Logo" class="hero-img" onerror="this.onerror=null; this.style.display='none';">
+        <div class="hero-title">Bruno Gaming</div>
+        <div style="font-size:14px; color:var(--accent); font-weight:700; margin-top:4px;">Official eFootball 2027 Coin Top-Up</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:6px;">Operated by Kyaw Waiyan Linn · Yangon, Myanmar</div>
+        <div class="badge-row">
+            <span class="badge">eFootball 2027</span>
+            <span class="badge purple">Yangon, Myanmar</span>
+            <span class="badge">19K+ FB Followers</span>
+        </div>
+        <div id="business-strip" style="margin-top:14px; padding:12px 14px; border-radius:12px; font-size:12px; line-height:1.7; text-align:left;">
+            <div style="font-weight:800; font-size:14px; margin-bottom:4px;">Kyaw Waiyan Linn · Bruno Gaming</div>
+        <div id="quick-help-strip" style="margin-top:14px; display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+            <button type="button" class="feat-card" id="help-price" style="cursor:pointer; border:1px solid var(--border);">💰 ဈေးကြည့်</button>
+            <button type="button" class="feat-card" id="help-chat" style="cursor:pointer; border:1px solid var(--border);">💬 Support Chat</button>
+            <button type="button" class="feat-card" id="help-fb" style="cursor:pointer; border:1px solid var(--border);">📘 Facebook</button>
+            <button type="button" class="feat-card" id="help-order" style="cursor:pointer; border:1px solid var(--border);">🛒 Order စတင်</button>
+        </div>
+
+            📧 <a href="mailto:kyawwaiyanlinn@brunogaming.online" style="color:var(--text);">kyawwaiyanlinn@brunogaming.online</a><br>
+            📞 <a href="tel:+959420749991" style="color:var(--text);">09 420 749 991</a><br>
+            📍 Yangon, Myanmar<br>
+            🔗 <a href="https://www.facebook.com/brunogaming25/" target="_blank" style="color:var(--accent);">facebook.com/brunogaming25</a>
+        </div>
+        <div class="hero-slogan">PLAY MORE • WIN MORE • BE LEGEND</div>
+
+        <div class="features-grid">
+            <div class="feat-card"><i class="fa-solid fa-bolt"></i> Fast & Safe</div>
+            <div class="feat-card"><i class="fa-solid fa-shield-halved"></i> 100% Trusted</div>
+            <div class="feat-card"><i class="fa-solid fa-headset"></i> 24/7 Support</div>
+            <div class="feat-card"><i class="fa-solid fa-circle-check"></i> Instant Delivery</div>
+        </div>
+    </div>
+
+    <div class="order-id-badge">Order Ref: <b id="order-id-display">-</b></div>
+
+    <div class="stepper">
+        <div class="step-dot active" id="dot-1">1</div>
+        <div class="step-line" id="line-1"></div>
+        <div class="step-dot" id="dot-2">2</div>
+        <div class="step-line" id="line-2"></div>
+        <div class="step-dot" id="dot-3">3</div>
+    </div>
+
+    <!-- STEP 1: Account Info + Package -->
+    <div class="panel" id="step-1">
+        <h2>Account & Package</h2>
+        <div class="sub">eFootball 2027 ID နှင့် Coin Package ရွေးပါ</div>
+
+        <div class="form-group">
+            <label for="konami-id">Konami ID (Email) <span class="req">*</span></label>
+            <input type="text" id="konami-id" placeholder="yourname@gmail.com" autocomplete="off" autocapitalize="off">
+            <div class="field-error" id="konami-error">မှန်ကန်သော Email ဖြည့်သွင်းပါ</div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password <span class="req">*</span></label>
+            <div class="pw-wrap">
+                <input type="password" id="password" placeholder="Enter Password" autocomplete="off">
+                <i class="fa-solid fa-eye pw-toggle" id="pw-toggle"></i>
+            </div>
+            <div class="field-error" id="password-error">Password ဖြည့်ပါ</div>
+        </div>
+
+        <div class="form-group">
+            <label>📱 Platform ရွေးပါ <span class="req">*</span></label>
+            <div class="pm-grid">
+                <div class="pm-card" id="platform-ios">
+                    <i class="fa-brands fa-apple"></i>
+                    <div class="name">iOS</div>
+                </div>
+                <div class="pm-card" id="platform-android">
+                    <i class="fa-brands fa-android"></i>
+                    <div class="name">Android</div>
+                </div>
+                <div class="pm-card" id="platform-japan">
+                    <i class="fa-solid fa-torii-gate"></i>
+                    <div class="name">Japan</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" id="promo-wrap" style="display:none;">
+            <label for="promo-package" id="promo-label">🔥 Promo Coin Packages (Limit 1 time)</label>
+            <select id="promo-package"></select>
+        </div>
+
+        <div class="form-group" id="std-wrap" style="display:none;">
+            <label for="std-package" id="std-label">💎 Standard Coin Packages</label>
+            <select id="std-package"></select>
+        </div>
+
+        <div class="price-display">
+            Total: <span id="total-price">0</span> MMK
+            <small>Coin amount ပြောင်းရင် auto update ဖြစ်ပါမည်</small>
+        </div>
+
+        <button type="button" class="btn" id="to-step2-btn">Next Step <i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+
+    <!-- STEP 2: Payment Method -->
+    <div class="panel" id="step-2" style="display:none;">
+        <h2>Payment Method ရွေးပါ</h2>
+        <div class="sub">ငွေလွှဲမည့် Account ကို ရွေးချယ်ပါ</div>
+
+        <div class="pm-grid" id="pm-grid"></div>
+
+        <div class="acct-box" id="acct-box">
+            <div class="label">ဤနံပါတ်/အကောင့်ကိုသာ ငွေလွှဲပါ</div>
+            <div class="number" id="acct-number">-</div>
+            <div class="name" id="acct-name">-</div>
+            <button type="button" class="copy-btn" id="copy-btn">📋 Copy Number</button>
+        </div>
+
+        <div class="btn-row">
+            <button type="button" class="btn btn-ghost" id="back-to-1-btn"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <button type="button" class="btn" id="to-step3-btn" disabled>Next Step <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <!-- STEP 3: Upload Slip + Submit -->
+    <div class="panel" id="step-3" style="display:none;">
+        <h2>Slip တင်ပြီး အော်ဒါတင်ပါ</h2>
+        <div class="sub" id="slip-instruction">ငွေလွှဲပြီးပါက Screenshot တင်ပါ</div>
+
+        <div class="form-group">
+            <label>Payment Screenshot <span class="req">*</span></label>
+            <div class="file-upload" id="upload-wrapper">
+                <label class="file-upload-label" for="payment-screenshot" id="upload-label-area">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <div class="txt" id="file-label">Tap to choose Screenshot</div>
+                </label>
+                <img id="preview-img" class="preview-img" alt="preview" style="display:none;">
+                <label class="change-photo-btn" for="payment-screenshot" id="change-photo-btn" style="display:none;">📷 ပုံပြောင်းမည်</label>
+                <input type="file" id="payment-screenshot" accept="image/*">
+            </div>
+            <div class="hint warn" id="slip-hint">⚠️ ရွေးထားသော Payment Method + Amount အတိုင်းသာ slip တင်ပါ။ AI က အလိုအလျောက် စစ်ဆေးပါမည် — မှားယွင်းပါက Submit မရပါ။</div>
+        </div>
+
+        <div class="panel" style="background: var(--card-2); padding: 14px; margin-bottom: 16px;">
+            <div class="summary-row"><span>Order Ref</span><span id="sum-order-id">-</span></div>
+            <div class="summary-row"><span>Package</span><span id="sum-package">-</span></div>
+            <div class="summary-row"><span>Payment</span><span id="sum-method">-</span></div>
+            <div class="summary-row"><span>Total</span><span id="sum-total">0 MMK</span></div>
+        </div>
+
+        <div class="btn-row">
+            <button type="button" class="btn btn-ghost" id="back-to-2-btn"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <button type="button" class="btn" id="submit-btn">
+                <span id="submit-btn-text">Submit Order</span>
+            </button>
+        </div>
+
+        <div id="status-message"></div>
+        <button type="button" class="btn btn-danger-outline" id="retry-btn" style="display:none; margin-top:10px;">🔁 ပြန်ကြိုးစားမည်</button>
+    </div>
+
+
+    <!-- eFootball Player Stats Search -->
+    <div class="social-box" style="text-align:left; padding:20px;">
+        <h4 style="text-align:center; margin-bottom:10px;">🔍 Player Stats Database</h4>
+        <p style="text-align:center; color:var(--muted); font-size:12px; margin:0 0 12px;">
+            နာမည် ရိုက်ပြီး eFootball player stats ရှာပါ
+        </p>
+        <div style="display:flex; gap:8px; margin-bottom:10px;">
+            <input type="text" id="player-search-input" placeholder="ဥပမာ: Ibrahimovic, Mbappe..."
+                style="flex:1; padding:12px; border-radius:10px; border:1px solid var(--border); background:var(--bg); color:var(--text); font-size:14px;">
+            <button type="button" id="player-search-btn" class="btn" style="width:auto; padding:12px 16px;">Search</button>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+            <button type="button" class="btn btn-ghost player-db-btn" data-db="efhub" style="width:auto; padding:8px 12px; font-size:12px;">eFHUB</button>
+            <button type="button" class="btn btn-ghost player-db-btn" data-db="hub" style="width:auto; padding:8px 12px; font-size:12px;">eFootball Hub</button>
+            <button type="button" class="btn btn-ghost player-db-btn" data-db="pesdb" style="width:auto; padding:8px 12px; font-size:12px;">PESDB</button>
+        </div>
+        <div id="player-search-hint" style="font-size:12px; color:var(--muted); line-height:1.5;">
+            Search နှိပ်ရင် player database site ဖွင့်ပြီး ပုံ + Overall + Stats အပြည့် ကြည့်နိုင်ပါတယ်။
+        </div>
+    </div>
+
+    <!-- Player Level Guide -->
+    <div class="social-box" style="text-align:left; padding:20px;">
+        <h4 style="text-align:center; margin-bottom:14px;">⚡ Player Level တင်နည်း</h4>
+        <div style="font-size:13px; line-height:1.75; color:var(--text);">
+            <p style="margin:0 0 12px; color:var(--muted); text-align:center;">
+                eFootball မှာ Player Level မြှင့်နည်း အတိုချုံး
+            </p>
+
+            <div style="background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:12px 14px; margin-bottom:10px;">
+                <b style="color:var(--accent);">၁) Training (အဓိကနည်း)</b><br>
+                Player → <b>Training</b> ဝင်ပါ<br>
+                • Training Points / GP သုံးပြီး Level တင်ပါ<br>
+                • EXP Trainer အသုံးပြုရင် ပိုမြန်ပါတယ်<br>
+                • အရေးကြီး Player ကို ဦးစားပေး Train ပါ
+            </div>
+
+            <div style="background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:12px 14px; margin-bottom:10px;">
+                <b style="color:var(--accent);">၂) Match ကစားခြင်း</b><br>
+                • Division / Event / Friendly ကစားရင် EXP ရပါတယ်<br>
+                • Player ကို Starting XI / Sub ထည့်ပြီး ကစားပါ<br>
+                • အနိုင်ရရင် EXP ပိုရတတ်ပါတယ်
+            </div>
+
+            <div style="background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:12px 14px; margin-bottom:10px;">
+                <b style="color:var(--accent);">၃) Progression / Boost</b><br>
+                • Level တက်လာရင် <b>Progression Points</b> ရပါတယ်<br>
+                • Shooting, Passing, Speed စတဲ့ stat တွေ ခွဲထည့်ပါ<br>
+                • Playstyle နဲ့ ကိုက်အောင် Boost ထည့်ပါ
+            </div>
+
+            <div style="background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:12px 14px; margin-bottom:10px;">
+                <b style="color:var(--accent);">၄) Skill ထည့်ခြင်း</b><br>
+                • Skill Token / Skill Training နဲ့ skill အသစ်ထည့်ပါ<br>
+                • Level မြင့် Player က skill slot ပိုရတတ်ပါတယ်<br>
+                • မလိုအပ်တဲ့ skill မထည့်ပါနဲ့
+            </div>
+
+            <div style="background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:12px 14px; margin-bottom:10px;">
+                <b style="color:var(--accent);">၅) အကြံပြုချက်</b><br>
+                • Coin ရှိရင် Event Pack / Useful player ယူပါ<br>
+                • Duplicate player ကို Train အဖြစ် သုံးလို့ရပါတယ်<br>
+                • Max Level မရောက်ခင် အရေးကြီး match မတိုင်ခင် Train ထားပါ<br>
+                • Bruno Gaming မှ Coin Top-up လုပ်ပြီး Event / Pack ဖွင့်နိုင်ပါတယ်
+            </div>
+
+            <p style="margin:12px 0 0; font-size:12px; color:var(--muted); text-align:center;">
+                * Game update ပေါ်မူတည်ပြီး UI အနည်းငယ် ပြောင်းနိုင်ပါတယ်
+            </p>
+        </div>
+    </div>
+
+    <!-- Official Business Identity (Payoneer verification) -->
+    <div class="social-box" id="business-info" style="text-align:left; padding:22px; border:2px solid var(--accent);">
+        <h4 style="text-align:center; margin-bottom:6px;">🏢 Official Business Page</h4>
+        <p style="text-align:center; color:var(--muted); font-size:12px; margin:0 0 16px;">
+            Bruno Gaming — eFootball 2027 Coin Top-Up Service<br>
+            Owned &amp; operated by <b>Kyaw Waiyan Linn</b>
+        </p>
+
+        <div style="font-size:14px; line-height:1.75; color:var(--text);">
+            <div style="margin-bottom:12px; padding:10px; background:var(--card-2); border-radius:10px;">
+                <strong style="color:var(--accent);">Full Name (Owner)</strong><br>
+                <span style="font-size:17px; font-weight:800;">Kyaw Waiyan Linn</span>
+            </div>
+            <div style="margin-bottom:12px; padding:10px; background:var(--card-2); border-radius:10px;">
+                <strong style="color:var(--accent);">Company / Shop Name</strong><br>
+                <span style="font-size:16px; font-weight:700;">Bruno Gaming</span>
+            </div>
+            <div style="margin-bottom:12px; padding:10px; background:var(--card-2); border-radius:10px;">
+                <strong style="color:var(--accent);">Line of Business</strong><br>
+                Digital game currency top-up for Konami eFootball 2027 (mobile &amp; console players in Myanmar).<br>
+                Customers order coin packages, pay via local mobile money, and receive in-game coins after verification.
+            </div>
+            <div style="margin-bottom:12px; padding:10px; background:var(--card-2); border-radius:10px;">
+                <strong style="color:var(--accent);">Business Email</strong><br>
+                <a href="mailto:kyawwaiyanlinn@brunogaming.online" style="color:var(--text); text-decoration:underline;">kyawwaiyanlinn@brunogaming.online</a><br>
+                <a href="mailto:kyawwaiyanlin334@gmail.com" style="color:var(--muted); text-decoration:underline; font-size:13px;">kyawwaiyanlin334@gmail.com</a>
+            </div>
+            <div style="margin-bottom:12px; padding:10px; background:var(--card-2); border-radius:10px;">
+                <strong style="color:var(--accent);">Phone</strong><br>
+                <a href="tel:+959420749991" style="color:var(--text); text-decoration:underline; font-size:16px; font-weight:700;">09 420 749 991</a>
+            </div>
+            <div style="margin-bottom:12px; padding:10px; background:var(--card-2); border-radius:10px;">
+                <strong style="color:var(--accent);">Primary Address</strong><br>
+                Yangon, Myanmar
+            </div>
+            <div style="margin-bottom:12px; padding:10px; background:var(--card-2); border-radius:10px;">
+                <strong style="color:var(--accent);">Website</strong><br>
+                <a href="https://www.brunogaming.online" style="color:var(--text); text-decoration:underline;">https://www.brunogaming.online</a>
+            </div>
+            <div style="margin-bottom:8px; padding:10px; background:var(--card-2); border-radius:10px;">
+                <strong style="color:var(--accent);">Official Social / Support</strong><br>
+                Facebook Page: <a href="https://www.facebook.com/brunogaming25/" target="_blank" style="color:var(--text);">facebook.com/brunogaming25</a><br>
+                Telegram: <a href="https://t.me/BRUNOGAMINGOFFICIAL" target="_blank" style="color:var(--text);">t.me/BRUNOGAMINGOFFICIAL</a>
+            </div>
+        </div>
+
+        <div class="social-icons" style="margin-top:14px;">
+            <a href="https://www.facebook.com/brunogaming25/" target="_blank" class="fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://t.me/BRUNOGAMINGOFFICIAL" target="_blank" class="tg" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        <b>Bruno Gaming</b> — Official eFootball 2027 Coin Top-Up<br>
+        Owner: <b>Kyaw Waiyan Linn</b> · Yangon, Myanmar<br>
+        Email: kyawwaiyanlinn@brunogaming.online · Phone: 09 420 749 991<br>
+        Order တင်ပြီး Admin စစ်ဆေး အတည်ပြုမှ Coin ထည့်ပေးပါမည်။
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+    <!-- Floating Live Chat Buttons -->
+    <div class="chat-float">
+        <div class="chat-tooltip">AI Chat ဖွင့်မယ်</div>
+        <button type="button" class="chat-btn chat-ai-btn" id="open-ai-chat" title="AI Chat">
+            <span class="pulse"></span>
+            <i class="fa-solid fa-robot"></i>
+        </button>
+        <a href="https://t.me/BRUNOGAMINGOFFICIAL" target="_blank" class="chat-btn" title="Telegram" style="width:48px;height:48px;font-size:22px;">
+            <i class="fa-brands fa-telegram"></i>
+        </a>
+        <a href="https://www.facebook.com/brunogaming25/" target="_blank" class="chat-btn chat-fb-btn" title="Facebook" style="width:44px;height:44px;font-size:20px;">
+            <i class="fa-brands fa-facebook-messenger"></i>
+        </a>
+    </div>
+
+    <!-- Bruno AI Assistant -->
+    <div class="ai-chat-window" id="ai-chat-window">
+        <div class="ai-chat-header">
+            <div class="ai-avatar">✨</div>
+            <div class="ai-head-copy">
+                <h3>Bruno AI</h3>
+                <div class="ai-chat-status-line"><span class="ai-online-dot">●</span> <span id="ai-chat-status">AI Assistant · Online</span></div>
+            </div>
+            <button type="button" class="close-chat" id="close-ai-chat" aria-label="Close">×</button>
+        </div>
+        <div class="ai-chat-messages" id="ai-chat-messages">
+            <div class="ai-welcome">
+                <div class="ai-welcome-icon">✨</div>
+                <h2>Bruno AI ကို မေးပါ</h2>
+                <p>Coin ဈေးနှုန်း၊ Order၊ Payment၊ Slip နဲ့ eFootball အကြောင်း<br>မြန်မာလို တိုက်ရိုက်မေးနိုင်ပါတယ်။</p>
+            </div>
+            <div class="ai-msg bot">မင်္ဂလာပါ 👋 Bruno Gaming မှာ ဘာကူညီပေးရမလဲ?</div>
+        </div>
+        <div class="ai-chat-footer">
+            <div class="quick-chips" id="quick-chips">
+                <button type="button" data-q="Coin package ဈေးနှုန်းတွေ ပြပါ">💰 ဈေးနှုန်း</button>
+                <button type="button" data-q="Payment method ဘာတွေ လက်ခံသလဲ">💳 Payment</button>
+                <button type="button" data-q="Order တင်ပြီး ဘယ်လောက်ကြာမလဲ">📦 Order</button>
+                <button type="button" data-q="Slip ဘယ်လိုတင်ရမလဲ">🧾 Slip တင်နည်း</button>
+                <button type="button" data-q="eFootball coin အကြောင်း ကူညီပေးပါ">🎮 eFootball</button>
+                <button type="button" data-q="Admin နဲ့ စကားပြောချင်ပါတယ်">👨‍💻 Admin</button>
+            </div>
+            <div class="ai-chat-actions">
+                <button type="button" class="call-admin" id="call-admin-btn">📞 Call Admin</button>
+                <button type="button" id="ai-clear-chat">Clear</button>
+            </div>
+            <div class="ai-chat-input-row">
+                <input type="text" id="ai-chat-input" placeholder="မေးချင်တာ ရေးပါ..." autocomplete="off">
+                <button type="button" id="ai-chat-send" aria-label="Send">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN OVERLAY -->
+    <div class="admin-overlay" id="admin-overlay">
+        <!-- Login Box -->
+        <div class="admin-box" id="admin-login-box">
+            <h2>🔒 Admin Login</h2>
+            <div class="sub">Bruno Gaming Admin Panel</div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" id="admin-email" placeholder="kyawwaiyanlin334@gmail.com" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="admin-password" placeholder="Enter Password" autocomplete="off">
+            </div>
+            <button type="button" class="btn" id="admin-login-btn">Login</button>
+            <button type="button" class="btn btn-ghost" id="admin-close-login" style="margin-top:10px;">Close</button>
+            <div id="admin-login-error" style="color:var(--danger); font-size:13px; text-align:center; margin-top:12px; display:none;"></div>
+        </div>
+
+        <!-- keep login only inside overlay; dash is full shell below -->
+        <div class="admin-box" id="admin-dash-box" style="display:none;"></div>
+    </div>
+
+    <!-- FULL ADMIN SHELL (pages) -->
+    <div class="admin-shell" id="admin-shell">
+        <div class="admin-topbar">
+            <h1>🛡️ Bruno Admin</h1>
+            <div class="admin-nav">
+                <button type="button" class="admin-nav-btn active" data-page="dashboard">Dashboard</button>
+                <button type="button" class="admin-nav-btn" data-page="orders">Orders</button>
+                <button type="button" class="admin-nav-btn" data-page="chat">Chat</button>
+                <button type="button" class="admin-nav-btn" data-page="settings">Settings</button>
+                <button type="button" class="admin-nav-btn" id="admin-logout" style="border-color:#f87171;color:#f87171;">Logout</button>
+            </div>
+        </div>
+        <div class="admin-body">
+            <!-- PAGE: Dashboard -->
+            <div class="admin-page active" id="page-dashboard">
+                <div class="admin-stat">
+                    <div class="stat-card"><div class="num" id="stat-today">0</div><div class="lbl">Today Orders</div></div>
+                    <div class="stat-card"><div class="num" id="stat-total">0</div><div class="lbl">Total Saved</div></div>
+                    <div class="stat-card"><div class="num" id="stat-calls">0</div><div class="lbl">Call Admin</div></div>
+                    <div class="stat-card"><div class="num" style="font-size:14px;">Kyaw Waiyan Linn</div><div class="lbl">Owner</div></div>
+                </div>
+                <div class="hint" style="margin-bottom:12px;">
+                    Main order alerts → <b>Telegram + WeChat</b><br>
+                    Live customer chat → <b>Chat</b> page (Firebase)
+                </div>
+                <div id="stats-detail" style="font-size:13px; line-height:1.7; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:14px;"></div>
+            </div>
+
+            <!-- PAGE: Orders -->
+            <div class="admin-page" id="page-orders">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                    <b>📦 Orders</b>
+                    <button type="button" class="btn btn-danger-outline" id="admin-clear-orders" style="width:auto;padding:8px 12px;font-size:12px;">Clear Local</button>
+                </div>
+                <div class="order-list" id="order-list">
+                    <div style="text-align:center; color:var(--muted); padding:20px;">No orders yet</div>
+                </div>
+            </div>
+
+            <!-- PAGE: Chat FULL -->
+            <div class="admin-page" id="page-chat">
+                <div class="admin-chat-full">
+                    <div class="admin-chat-full-header">
+                        <div>
+                            <h3>💬 Live Customer Chat</h3>
+                            <div style="font-size:11px;opacity:.85;">Firebase realtime · full page</div>
+                        </div>
+                        <span id="admin-chat-online" style="font-size:12px;">● Online</span>
+                    </div>
+                    <div class="chat-log" id="admin-chat-log">
+                        <div class="chat-msg admin">System: Customer messages will appear here in realtime.</div>
+                    </div>
+                    <div class="quick-chips" id="admin-quick-chips" style="padding:8px 12px 0;">
+                        <button type="button" data-a="ခဏစောင့်ပါနော်">ခဏစောင့်ပါ</button>
+                        <button type="button" data-a="Order ရပါပြီ စစ်နေပါတယ်">Order ရပြီ</button>
+                        <button type="button" data-a="Coin ထည့်ပြီးပါပြီ ✅">Coin ပြီး</button>
+                        <button type="button" data-a="Slip ပြန်တင်ပေးပါ">Slip ပြန်တင်</button>
+                    </div>
+                    <div class="admin-chat-compose">
+                        <input type="text" id="admin-chat-input" placeholder="Customer ကို ပြန်စာ ရေးပါ..." autocomplete="off">
+                        <button type="button" id="admin-chat-send">Send</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE: Settings -->
+            <div class="admin-page" id="page-settings">
+                <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;font-size:13px;line-height:1.7;margin-bottom:12px;">
+                    <b>⚙️ Settings</b><br><br>
+                    Email: kyawwaiyanlin334@gmail.com<br>
+                    Phone: 09 420 749 991<br>
+                    Shop: Bruno Gaming<br><br>
+                    Admin login: logo × 15 · Password: Bruno@2026
+                </div>
+                <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;font-size:13px;">
+                    <b>👥 Customers</b>
+                    <div id="customer-list" style="margin-top:10px;max-height:50vh;overflow-y:auto;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+  <script src="js/app.js"></script>
+</body>
+</html>
